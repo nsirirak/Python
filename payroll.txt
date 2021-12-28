@@ -1,0 +1,10 @@
+Muhammad Khan,12.5,50
+Wassim Mohamad,20,45
+Peter Sankiewicz,22.5,37
+Raphaela Han, 18.5, 37.5
+Nick Sirirak,15,48
+Shawn Doe, 10.5, 50
+Amber Alert, 30, 20
+Ed Python, 22.5, 20
+Smite Slackbot, 9.5, 60
+Jason Mars, 40.25, 45
