@@ -1,5 +1,5 @@
 # Elementary Math
-This file contains Python function code regarding basic math
+This file contains Python code for fundamental math functions.
 ### Is the number is odd or even
 This is probably your first challenge when you start coding. We simply check the remainder of the given number divided by two. The % operator given the remainder. In the case of % by 2, if the value of the expression is 0, the given number is even otherwise it is odd.
 ```python
@@ -19,6 +19,9 @@ def isPrime(num:int)->(bool):
             if num % n == 0: return False
         return True
 ```
+---
+<br>
+
 The function above is work but consider what happens if we give it a large odd integer. It will test every single number in a loop, which is waste of the time. We can limit the test to the root of the given number because the result of division beyond the root is smaller than the number that has been iterated. We also can skip all the even numbers since any even number except 2 are not a prime number.
 ```python
 def isPrime(num:int)->(bool):

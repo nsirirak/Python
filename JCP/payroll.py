@@ -63,18 +63,16 @@ Read employee information from a file. Extract data and store in employee list
 """
 def fileMode(file):
     print(f"file name = {file}" )
-    d = {}
     try:
         with open (file,'r') as f:
             for line in f:
-                temp = [l.strip() for l in line.split(',')]
-                d.setdefault(temp[0],[temp[1], temp[2]])
+                temp = [data.strip() for data in line.split(',')]
                 info['name'] = temp[0]
                 info['pay rate'] = float(temp[1])
                 info['total hours'] = float(temp[2])
                 employee_list.append(info.copy())
-    except Exception as e:
-        print(e)
+    except Exception as error:
+        print(error)
 
 """
 Manual create employee list, asking a number of employees, name, pay rate, and worked hours.
@@ -91,16 +89,16 @@ def manualMode():
         info['total hours'] = hours
         employee_list.append(info.copy())
 
-#args =  str(sys.argv)
-#print(args)
-info = {"name": None, "pay rate":None, "total hours":None, "regular hours":None,
-            "over time":None, "gross income":None, "federal tax":None, "state tax":None,
-            "FICA":None, "net income":None}
-employee_list = []
-if len(sys.argv) == 2:
-    fileMode(sys.argv[1])
-else:
-    manualMode()
-printPayRoll()
+# main start here
+if __name__ == "__main__":
+    info = {"name": None, "pay rate":None, "total hours":None, "regular hours":None,
+                "over time":None, "gross income":None, "federal tax":None, "state tax":None,
+                "FICA":None, "net income":None}
+    employee_list = []
+    if len(sys.argv) == 2:
+        fileMode(sys.argv[1])
+    else:
+        manualMode()
+    printPayRoll()
 
 
