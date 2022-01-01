@@ -14,4 +14,4 @@ To run with the command line type "python payroll.py". You will be prompt how ma
 
 To process a text file, for example, payroll.txt contains all employees' names, pay rate, and worked hours, Type "python payroll.py payroll.txt"
 
-![Output image](output.png)
+![Output image](output.PNG)
