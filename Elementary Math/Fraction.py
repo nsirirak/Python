@@ -20,13 +20,14 @@ class Fraction() :
             print("Invalid input")
             
     def __str__(self):
-        whole = self.numerator // self.denominator
-        n = self.numerator % self.denominator
-        if whole == 0 :
-            return "{}/{}".format(self.numerator,self.denominator)
-        if n == 0:
-            return "{}".format(whole)
-        return "{} {}/{}".format(whole, n, self.denominator)
+        if self.numerator == 0:
+            return "0"
+        elif abs(self.numerator) > self.denominator:
+            w = self.numerator // self.denominator
+            n = abs(self.numerator) % self.denominator
+            return f"{w} {n}/{self.denominator}"
+        else:
+            return f"{self.numerator}/{self.denominator}"
         
     def add(self,fr:"Fraction") -> "Fraction":
         #adds fractions
@@ -37,10 +38,10 @@ class Fraction() :
         #does the same thing as above
         temp2 = lcn // fr.denominator * fr.numerator
         # makes a new fraction with the new numerator and denominator
-        newF = Fraction(temp+temp2, lcn)
+        newFraction = Fraction(temp+temp2, lcn)
         # siplify + return
-        newF.simplify()
-        return newF
+        newFraction.simplify()
+        return newFraction
 
     def subtract (self,fr:"Fraction") -> "Fraction":
         #subtracts fractions
@@ -51,23 +52,17 @@ class Fraction() :
         #does the same thing as above
         temp2 = lcn // fr.denominator * fr.numerator
         # makes a new fraction with the new numerator and denominator
-        newF = Fraction(temp-temp2, lcn)
+        newFraction = Fraction(temp-temp2, lcn)
+        #print(newFraction)
         # siplify + return
-        newF.simplify()
-        return newF
+        newFraction.simplify()
+        return newFraction
 
     # multiply method
     def multiply (self,fr:"Fraction") -> "Fraction" :
-        # multiply numerator together
-        temp = self.numerator * fr.numerator
-        # multiply denominator togeter
-        temp2 = self.denominator * fr.denominator
-        # make a new fraction with the new numerator and denominator
-        newF = Fraction(temp,temp2)
-        # simplify it and return
-        newF.simplify()
-        return newF
+        return Fraction(self.numerator * fr.numerator,self.denominator * fr.denominator)
 
+    # divide method
     def divide (self,fr:"Fraction") -> "Fraction" :
         # flips the second number over
         temp = Fraction(fr.denominator,fr.numerator)
@@ -79,6 +74,7 @@ class Fraction() :
         # set the great common factor = 1
         GCF = 1 
         # get a list of common factor for both numerator and denominator
+
         nFactor = factorize(self.numerator)
         dFactor = factorize(self.denominator)
         # look for the great common factor in the list
@@ -114,17 +110,45 @@ class Fraction() :
     def __truediv__(self, fr):
         return self.divide(fr)
 
+    def __lt__(self, other):
+        result = self.subtract(other)
+        return result.numerator < 0
+
+    def __le__(self, other):
+        result = self.subtract(other)
+        return result.numerator <= 0
+
+    def __eq__(self, other):
+        result = self.subtract(other)
+        return result.numerator == 0
+
+    def __ne__(self, other):
+        result = self.subtract(other)
+        return result.numerator != 0
+
+    def __gt__(self, other):
+        result = self.subtract(other)
+        return result.numerator > 0
+
+    def __ge__(self, other):
+        result = self.subtract(other)
+        return result.numerator >= 0
+
 
 # Testing Area
 if __name__ == "__main__":
-    f1 = Fraction("1/5")
-    f2 = Fraction("3/10")
+    f1 = Fraction("4/5")
+    f2 = Fraction("9/10")
     #print(f1.subtract(f2))
 
-    f3 = f1 + f2
-    print(f3)
-    print(f3 - Fraction("1/3"))
-    print(f1 * f2)
-    print(f1/f2)
-    print(Fraction("1/3").isEqual(Fraction("3/9")))
-    f4 = Fraction("3t/4")
+    print(f"{f1} + {f2} : {f1 + f2}") 
+    print(f"{f1} * {f2} : {f1 * f2}") 
+    print(f"{f1} / {f2} : {f1 / f2}") 
+    print(f"{f1} - {f2} : {f1 - f2}") 
+    print(f"{f1} < {f2}  : {f1 < f2}") 
+    print(f"{f1} <= {f2}  : {f1 <= f2}")
+    print(f"{f1} = {f2}  : {f1 == f2}")
+    print(f"{f1} != {f2}  : {f1 != f2}")
+    print(f"{f1} > {f2}  : {f1 > f2}") 
+    print(f"{f1} >= {f2}  : {f1 >= f2}")
+    

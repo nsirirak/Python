@@ -13,6 +13,7 @@ def isPrime(num:int)->(bool):
     :param: int
     :return: Boolean
     """
+    if num < 1: return False
     if num % 2 == 0: return False
     limit = int(num ** 0.5) + 1
     for n in range(3, limit, 2):
@@ -25,6 +26,7 @@ def factorize(num:int) ->list:
     param: int
     return: list of int
     """
+    num = abs(num)
     root = int(num ** 0.5) + 1
     i = 1
     bound = num
