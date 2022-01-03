@@ -5,6 +5,8 @@ class Fraction() :
         try:
             whole = 0
             if len(args) == 2:
+                if not isinstance(args[0], int) or not isinstance(args[1], int):                   
+                    raise ValueError
                 self.numerator = args[0]
                 self.denominator = args[1]
             elif len(args) == 1:
@@ -15,8 +17,12 @@ class Fraction() :
                 ar = ar[0].split('/')
                 self.denominator = int(ar[1])
                 self.numerator = int(ar[0]) + whole * self.denominator
+            if self.denominator == 0:
+                raise ValueError
             self.simplify()
         except:
+            self.numerator = 0
+            self.denominator = 1
             print("Invalid input")
             
     def __str__(self):
@@ -25,7 +31,10 @@ class Fraction() :
         elif abs(self.numerator) > self.denominator:
             w = self.numerator // self.denominator
             n = abs(self.numerator) % self.denominator
-            return f"{w} {n}/{self.denominator}"
+            if n != 0:
+                return f"{w} {n}/{self.denominator}"
+            else:
+                return f"{w}"
         else:
             return f"{self.numerator}/{self.denominator}"
         
@@ -137,7 +146,7 @@ class Fraction() :
 
 # Testing Area
 if __name__ == "__main__":
-    f1 = Fraction("4/5")
+    f1 = Fraction("5/12")
     f2 = Fraction("9/10")
     #print(f1.subtract(f2))
 
